@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Memory Simulator</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
-    <h1>Hello!</h1>
+<body class="flex justify-center">
 
-    <div class="config">
-        <h1>Virtual Memory Simulator</h1>
-        <p>
-            Visualize how FIFO (First In First Out) and LRU (Least Recently Used) page replacement algorithms work in virtual memory management.
-        </p>
+    <div class="config-wrapper">
+        <div class="config">
+            <h1>Virtual Memory Simulator</h1>
+            <p>Visualize how FIFO (First In First Out) and LRU (Least Recently Used) page replacement algorithms work in virtual memory management</p>
+
+            <div class="algorithm-toggle">
+                <button class="toggle-btn active" data-algorithm="fifo">FIFO Algorithm</button>
+                <button class="toggle-btn" data-algorithm="lru">LRU Algorithm</button>
+            </div>
+              
+            <div class="algorithm-description">
+                <div id="lru-description" class="description-text">
+                    <strong>Least Recently Used (LRU):</strong> The page that hasn't been used for the longest time is replaced.
+                    This algorithm performs better than FIFO but requires tracking when each page was last accessed.
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,111 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+#root, #__next {
+    isolation: isolate;
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.config-wrapper {
+    margin-top: 2rem;
+    width: 70%;
+    border: 1px gray solid;
+    border-radius: 0.3rem;
+}
+
+.config {
+    padding: 2rem;
+}
+
+
+.algorithm-toggle {
+    display: inline-flex;
+    background-color: #f5f5f5;
+    border-radius: 0.3rem;
+    padding: 0.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.toggle-btn.active {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-btn:focus {
+    outline: none;
+}
+
+.algorithm-description {
+    background-color: #f9f9f9;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.description-text {
+    color: #555;
+    font-size: 0.9rem;
+}
