@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Memory Simulator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./index.js"></script>
+    <script src="./index.js" defer async></script>
 </head>
 <body class="flex justify-center">
 
     <div class="config-wrapper">
         <div class="config">
             <h1>Virtual Memory Simulator</h1>
-            <p>Visualize how FIFO (First In First Out) and LRU (Least Recently Used) page replacement algorithms work in virtual memory management</p>
+            <p id="config-desc">Visualize how FIFO (First In First Out) and LRU (Least Recently Used) page replacement algorithms work in virtual memory management</p>
 
             <div class="algorithm-toggle">
                 <button class="toggle-btn active" data-algorithm="fifo">FIFO Algorithm</button>
@@ -29,6 +29,38 @@
                     This algorithm is simple but may replace frequently used pages.
                 </div>
             </div>
+
+
+            <div class="sliders grid">
+                
+                <p id="slider-title">Number of Page Frames</p>
+                <p id="slider-title">Simulation Speed</p>
+
+                <div class="page-frame-slider flex items-center">
+                    <input type="range"
+                    name="page-frame-range"
+                    id="page-frame-range"
+                    min="1"
+                    max="7"
+                    step="1"
+                    value="3">
+                    <p id="page-frame-ctr">1</p>
+                </div>
+                
+                <div class="sim-speed-slider flex items-center">
+                    <input type="range"
+                    name="sim-speed-range"
+                    id="sim-speed-range"
+                    min="0.5"
+                    max="3"
+                    step="0.5"
+                    value="1"
+                    >
+                    
+                    <p id="sim-speed-ctr">1x</p>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>

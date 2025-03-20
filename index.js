@@ -1,3 +1,4 @@
+// Change algorithm description on toggle
 document.addEventListener('DOMContentLoaded', function() {
     const toggleButtons = document.querySelectorAll('.toggle-btn');
     const fifoDescription = document.getElementById('fifo-description');
@@ -22,3 +23,30 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 });
+
+const pageFrameRange = document.getElementById("page-frame-range")
+const pageFrameCtr = document.getElementById("page-frame-ctr")
+const simSpeedRange = document.getElementById("sim-speed-range")
+const simSpeedCtr = document.getElementById("sim-speed-ctr")
+
+
+
+function updateSliderFill(slider) {
+  const percentage = ((slider.value - slider.min) / (slider.max - slider.mid)) * 100;
+  slider.style.setProperty("--slider-percentage", percentage + "%");
+
+}
+
+updateSliderFill(pageFrameRange);
+updateSliderFill(simSpeedRange);
+
+pageFrameRange.addEventListener("input", function () {
+  updateSliderFill(pageFrameRange);
+  pageFrameCtr.textContent = this.value;
+});
+
+simSpeedRange.addEventListener("input", function () {
+  updateSliderFill(simSpeedRange);
+  simSpeedCtr.textContent = this.value + "x";
+});
+

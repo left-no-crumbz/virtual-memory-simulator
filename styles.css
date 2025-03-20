@@ -67,6 +67,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .config {
     padding: 2rem;
+
+    #config-desc {
+        color: #555
+    }
 }
 
 
@@ -106,4 +110,30 @@ h1, h2, h3, h4, h5, h6 {
 .description-text {
     color: #555;
     font-size: 0.9rem;
+}
+
+#slider-title {
+    font-weight: 500;
+}
+
+.sliders, .sim-speed-slider, .page-frame-slider {
+    width: 100%;
+}
+
+.sliders {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+#page-frame-range, #sim-speed-range {
+    border: 0;
+    padding: 0.5rem;
+    width: 90%;
+    accent-color: black;
+    margin-right: 1rem;
+}
+
+#page-frame-ctr {
+    width: 30px;
+    height: 30px;
 }
