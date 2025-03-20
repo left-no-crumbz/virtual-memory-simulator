@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .config-wrapper {
     margin-top: 2rem;
-    width: 60%;
+    width: 67%;
     border: 1px #dfdddd solid;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     border-radius: 0.3rem;
@@ -155,4 +155,28 @@ h1, h2, h3, h4, h5, h6 {
 input[type="text"] + span {
     font-size: .8rem;
     color: #747474;
+}
+
+.run-container {
+    margin-top: 1rem;
+    justify-content: flex-end;
+
+    img {
+        width: 20px;
+        height: 20px;
+    }
+
+    #run-btn {
+        width: 105px;
+        padding: .8em 1.2em;
+        background-color: black;
+        color: white;
+        border-radius: 0.5rem;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    #run-btn:hover {
+        background-color: rgb(22, 22, 22);
+    }
 }
