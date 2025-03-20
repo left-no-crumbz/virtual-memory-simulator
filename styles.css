@@ -10,7 +10,7 @@
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: Helvetica, system-ui, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 img, picture, video, canvas, svg {
@@ -66,8 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 .config, .memory-frame, .statistics {
     border: 1px #dfdddd solid;
     border-radius: 0.3rem;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-
+    box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 2.6px;
     padding: 2rem;
 }
 
@@ -186,4 +185,22 @@ input[type="text"] + span {
     margin-bottom: 2rem;
     grid-template-columns: 1.75fr 1fr;
     gap: 1.5rem;
+}
+
+.page-frame {
+    margin-top: 1rem;
+    border: 1px #dfdddd solid;
+    width: 100%;
+    height: 70px;
+    border-radius: .5rem;
+    padding: 0 1rem;
+}
+
+.number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #F4F4F5;
+    color: #555;
+    font-weight: 700;
 }
