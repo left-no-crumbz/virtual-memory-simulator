@@ -75,7 +75,8 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .algorithm-toggle {
-    display: inline-flex;
+    flex-wrap: wrap;
+    max-width: fit-content;
     background-color: #f5f5f5;
     border-radius: 0.3rem;
     padding: 0.25rem;
@@ -122,7 +123,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .sliders {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fit, 1fr);
 }
 
 #page-frame-range, #sim-speed-range {
@@ -136,4 +137,8 @@ h1, h2, h3, h4, h5, h6 {
 #page-frame-ctr {
     width: 30px;
     height: 30px;
+}
+
+#sim-speed-ctr, #page-frame-ctr {
+    font-size: 1.2rem;
 }

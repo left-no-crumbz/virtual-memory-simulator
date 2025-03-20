@@ -13,7 +13,7 @@
             <h1>Virtual Memory Simulator</h1>
             <p id="config-desc">Visualize how FIFO (First In First Out) and LRU (Least Recently Used) page replacement algorithms work in virtual memory management</p>
 
-            <div class="algorithm-toggle">
+            <div class="algorithm-toggle flex">
                 <button class="toggle-btn active" data-algorithm="fifo">FIFO Algorithm</button>
                 <button class="toggle-btn" data-algorithm="lru">LRU Algorithm</button>
             </div>
@@ -51,10 +51,12 @@
                     step="0.5"
                     value="1"
                     >
-                    
                     <p id="sim-speed-ctr">1x</p>
                 </div>
             </div>
+
+            <p>Page Sequence</p>
+            <input type="text">
 
         </div>
     </div>
