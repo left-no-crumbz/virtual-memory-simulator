@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Memory Simulator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./index.js" defer async></script>
 </head>
 <body class="flex justify-center">
 
@@ -20,11 +19,7 @@
             </div>
               
             <div class="algorithm-description">
-                <div id="lru-description" class="description-text">
-                    <strong>Least Recently Used (LRU):</strong> The page that hasn't been used for the longest time is replaced.
-                    This algorithm performs better than FIFO but requires tracking when each page was last accessed.
-                </div>
-                <div id="fifo-description" class="description-text">
+                <div id="description" class="description-text">
                     <strong>First In First Out (FIFO):</strong> The oldest page in memory is replaced when a new page needs to be loaded. 
                     This algorithm is simple but may replace frequently used pages.
                 </div>
@@ -44,7 +39,7 @@
                     max="7"
                     step="1"
                     value="3">
-                    <p id="page-frame-ctr">1</p>
+                    <p id="page-frame-ctr">3</p>
                 </div>
                 
                 <div class="sim-speed-slider flex items-center">
@@ -64,4 +59,5 @@
         </div>
     </div>
 </body>
+<script src="./index.js"></script>
 </html>
