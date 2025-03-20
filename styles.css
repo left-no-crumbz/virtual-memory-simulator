@@ -61,19 +61,19 @@ h1, h2, h3, h4, h5, h6 {
 .config-wrapper {
     margin-top: 2rem;
     width: 67%;
+}
+
+.config, .memory-frame, .statistics {
     border: 1px #dfdddd solid;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     border-radius: 0.3rem;
-}
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-.config {
     padding: 2rem;
-
-    #config-desc {
-        color: #555
-    }
 }
 
+#desc {
+    color: #7c7c7c
+}
 
 .algorithm-toggle {
     flex-wrap: wrap;
@@ -179,4 +179,11 @@ input[type="text"] + span {
     #run-btn:hover {
         background-color: rgb(22, 22, 22);
     }
+}
+
+.grid-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    grid-template-columns: 1.75fr 1fr;
+    gap: 1.5rem;
 }
