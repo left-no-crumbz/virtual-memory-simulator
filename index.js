@@ -60,19 +60,20 @@ function createPageFrame(value) {
   }
 
   for (let index = 0; index < value; index++) {
-    let pageFrame = document.createElement("div");
-    let number = document.createElement("div");
-    
+    const pageFrame = document.createElement("div");
+    const number = document.createElement("div");
+    const value = document.createElement("div");
 
     number.textContent = index + 1;
+    value.textContent = "–";
 
     pageFrame.classList.add("page-frame", "flex", "items-center");
-    
-
     number.classList.add("number", "flex", "justify-center", "items-center");
+    value.classList.add("value");
 
     memoryFrame.appendChild(pageFrame);
     pageFrame.appendChild(number);
+    pageFrame.appendChild(value);
   }
 }
 
