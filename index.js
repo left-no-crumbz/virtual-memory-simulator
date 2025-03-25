@@ -28,8 +28,6 @@ const pageFrameCtr = document.getElementById("page-frame-ctr")
 const simSpeedRange = document.getElementById("sim-speed-range")
 const simSpeedCtr = document.getElementById("sim-speed-ctr")
 
-
-
 function updateSliderFill(slider) {
   const percentage = ((slider.value - slider.min) / (slider.max - slider.mid)) * 100;
   slider.style.setProperty("--slider-percentage", percentage + "%");
@@ -38,10 +36,12 @@ function updateSliderFill(slider) {
 
 updateSliderFill(pageFrameRange);
 updateSliderFill(simSpeedRange);
+createPageFrame(pageFrameRange.value);
 
 pageFrameRange.addEventListener("input", function () {
   updateSliderFill(pageFrameRange);
   pageFrameCtr.textContent = this.value;
+  createPageFrame(pageFrameRange.value)
 });
 
 simSpeedRange.addEventListener("input", function () {
@@ -49,3 +49,32 @@ simSpeedRange.addEventListener("input", function () {
   simSpeedCtr.textContent = this.value + "x";
 });
 
+function createPageFrame(value) {
+  const memoryFrame = document.querySelector(".memory-frame");
+
+  // wipe content
+  while (memoryFrame.firstChild) {
+    memoryFrame.removeChild(memoryFrame.firstChild);
+  }
+
+  for (let index = 0; index < value; index++) {
+    let pageFrame = document.createElement("div");
+    let number = document.createElement("div");
+    
+    console.log(pageFrame);
+    console.log(number);
+
+    number.textContent = index + 1;
+
+    pageFrame.classList.add("page-frame", "flex", "items-center");
+    
+    console.log(pageFrame);
+
+    number.classList.add("number", "flex", "justify-center", "items-center");
+
+    memoryFrame.appendChild(pageFrame);
+    pageFrame.appendChild(number);
+    
+
+  }
+}
