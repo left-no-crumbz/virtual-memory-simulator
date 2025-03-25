@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 67%;
 }
 
-.config, .memory-frame, .statistics {
+.config, .memory-frame-container, .statistics {
     border: 1px #dfdddd solid;
     border-radius: 0.3rem;
     box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 2.6px;
@@ -203,5 +203,5 @@ input[type="text"] + span {
     background-color: #F4F4F5;
     color: #7c7c7c;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }

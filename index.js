@@ -23,10 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-const pageFrameRange = document.getElementById("page-frame-range")
-const pageFrameCtr = document.getElementById("page-frame-ctr")
-const simSpeedRange = document.getElementById("sim-speed-range")
-const simSpeedCtr = document.getElementById("sim-speed-ctr")
+const pageFrameRange = document.getElementById("page-frame-range");
+const pageFrameCtr = document.getElementById("page-frame-ctr");
+const simSpeedRange = document.getElementById("sim-speed-range");
+const simSpeedCtr = document.getElementById("sim-speed-ctr");
+const pageSeq = document.getElementById("page-seq");
+
 
 function updateSliderFill(slider) {
   const percentage = ((slider.value - slider.min) / (slider.max - slider.mid)) * 100;
@@ -61,20 +63,20 @@ function createPageFrame(value) {
     let pageFrame = document.createElement("div");
     let number = document.createElement("div");
     
-    console.log(pageFrame);
-    console.log(number);
 
     number.textContent = index + 1;
 
     pageFrame.classList.add("page-frame", "flex", "items-center");
     
-    console.log(pageFrame);
 
     number.classList.add("number", "flex", "justify-center", "items-center");
 
     memoryFrame.appendChild(pageFrame);
     pageFrame.appendChild(number);
-    
-
   }
+}
+
+function runFIFO(arrValues) {
+  
+
 }
