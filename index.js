@@ -90,18 +90,26 @@ function createPageFrame(value) {
 }
 
 function runFIFO(pageSequence) {
+  const pageFrames = Array.from(document.querySelectorAll(".page-frame"))
   const pageFrameValues = Array.from(document.querySelectorAll(".value"));
   const pages = pageSequence.split(",").map((val) => val.trim());
   const pageFrameCount = pageFrameValues.length;
-
+  const borderColor = "#dfdddd";
   console.log(pages);
+
+  function resetFrameColors() {
+    pageFrames.forEach(frame => {
+      frame.style.borderColor = borderColor;
+    });
+  }
 
   // implement a queue to keep track of pages
   const memoryQueue = [];
 
   async function insertPage(page, index) {
+    console.log(memoryQueue);
+    
     return new Promise((resolve) => {
-      console.log(pages);
       
       // if page is already in memory, end early
       if (memoryQueue.includes(page)) {
@@ -120,6 +128,7 @@ function runFIFO(pageSequence) {
 
         if (removedFrameIndex !== -1) {
           pageFrameValues[removedFrameIndex].textContent = "–";
+          pageFrames[removedFrameIndex].style.borderColor = borderColor;
         }
       }
 
@@ -134,6 +143,11 @@ function runFIFO(pageSequence) {
       // update the frame
       if (emptyFrameIndex !== -1) {
         pageFrameValues[emptyFrameIndex].textContent = page;
+        pageFrames[emptyFrameIndex].style.borderColor = "goldenrod";
+
+        setTimeout(() => {
+          pageFrames[emptyFrameIndex].style.borderColor = borderColor;
+        }, 700);
       }
 
       setTimeout(resolve, (1000)/simSpeedRange.value);
@@ -142,6 +156,8 @@ function runFIFO(pageSequence) {
 
   // simulate page replacement
   async function simulatePageReplacement() {
+    
+    resetFrameColors();
     for (let i = 0; i < pages.length; i++) {
       await insertPage(pages[i], i);
     }
@@ -150,3 +166,4 @@ function runFIFO(pageSequence) {
   // call the simulation
   simulatePageReplacement();
 }
+
