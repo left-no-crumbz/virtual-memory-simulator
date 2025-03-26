@@ -94,8 +94,28 @@ function runFIFO(pageSequence) {
   const pageFrameValues = Array.from(document.querySelectorAll(".value"));
   const pages = pageSequence.split(",").map((val) => val.trim());
   const pageFrameCount = pageFrameValues.length;
+  const pageHitCtr = document.querySelector(".page-hit-ctr");
+  const pageFaultCtr = document.querySelector(".page-fault-ctr");
+  const hitRatioCtr = document.querySelector(".hit-ratio-ctr");
+  
+  let pageHitCtrVal = 0;
+  let pageFaultCtrVal = 0;
+
   const borderColor = "#dfdddd";
   console.log(pages);
+
+  function updateStatistics() {
+    pageHitCtr.textContent = pageHitCtrVal;
+    pageFaultCtr.textContent = pageFaultCtrVal;
+
+    const totalAccesses = pageHitCtrVal + pageFaultCtrVal
+
+    const hitRatio = totalAccesses > 0 
+    ? ((pageHitCtrVal/totalAccesses) * 100).toFixed(0)
+    : 0;
+
+    hitRatioCtr.textContent = `${hitRatio}%`
+  }
 
   function resetFrameColors() {
     pageFrames.forEach(frame => {
@@ -111,11 +131,30 @@ function runFIFO(pageSequence) {
     
     return new Promise((resolve) => {
       
-      // if page is already in memory, end early
+      // if page is already in memory, increment page hit
       if (memoryQueue.includes(page)) {
-        resolve();
+        pageHitCtrVal++
+        updateStatistics();
+
+        const hitFrameIndex = pageFrameValues.findIndex(
+          frame => frame.textContent === page
+        );
+
+        if (hitFrameIndex !== -1) {
+          pageFrames[hitFrameIndex].style.borderColor = "green";
+
+          setTimeout(() => {
+            pageFrames[hitFrameIndex].style.borderColor = borderColor;
+          }, 500);
+        }
+        
+        setTimeout(resolve, (1000/simSpeedRange.value));
         return;
       }
+
+      // else increment page fault
+      pageFaultCtrVal++;
+      updateStatistics()
 
       // if memory is full, remove the oldest/first page
       if (memoryQueue.length >= pageFrameCount) {
@@ -156,7 +195,10 @@ function runFIFO(pageSequence) {
 
   // simulate page replacement
   async function simulatePageReplacement() {
-    
+    pageHitCtrVal = 0;
+    pageFaultCtrVal = 0;
+    updateStatistics();
+
     resetFrameColors();
     for (let i = 0; i < pages.length; i++) {
       await insertPage(pages[i], i);
