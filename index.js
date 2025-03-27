@@ -225,7 +225,7 @@ class PageReplacementStrategy {
 
       setTimeout(() => {
         this.pageFrames[frameIndex].style.borderColor = this.borderColor;
-      }, 700);
+      }, (700 / simSpeedRange.value));
     }
   }
 
@@ -246,7 +246,7 @@ class PageReplacementStrategy {
 
       setTimeout(() => {
         this.pageFrames[hitFrameIndex].style.borderColor = this.borderColor;
-      }, 500);
+      }, (500/simSpeedRange.value));
     }
   }
 
