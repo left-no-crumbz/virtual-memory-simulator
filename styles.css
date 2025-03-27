@@ -10,7 +10,7 @@
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-    font-family: Helvetica, system-ui, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Geist", Helvetica, system-ui, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 img, picture, video, canvas, svg {
@@ -136,13 +136,9 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 1rem;
 }
 
-#page-frame-ctr {
-    width: 30px;
-    height: 30px;
-}
 
 #sim-speed-ctr, #page-frame-ctr {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 #page-seq {
@@ -152,7 +148,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: .5rem;
 }
 
-input[type="text"] + span {
+span {
     font-size: .8rem;
     color: #747474;
 }
@@ -167,8 +163,10 @@ input[type="text"] + span {
     }
 
     #run-btn, #reset-btn {
-        width: 105px;
-        padding: .5em 1em;
+        font-size: .9rem;
+        border: #dfdddd 1px solid;
+        width: 100px;
+        padding: .8em .6em;
         background-color: black;
         color: white;
         border-radius: 0.5rem;
@@ -177,6 +175,7 @@ input[type="text"] + span {
     }
     
     #reset-btn {
+        width: 110px;
         background-color: white;
         color: black;
     }

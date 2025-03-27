@@ -4,8 +4,12 @@ const simSpeedRange = document.getElementById("sim-speed-range");
 const simSpeedCtr = document.getElementById("sim-speed-ctr");
 const pageSeq = document.getElementById("page-seq");
 const runButtonContainer = document.querySelector('.run-container');
+const resetBtn = document.getElementById("reset-btn");
 const toggleButtons = document.querySelectorAll('.toggle-btn');
 const description = document.getElementById('description');
+
+window.isSimulationRunning = false;
+
 pageSeq.value = "1,2,3,4,1,2,5,1,2,3,4,5";
 
 // default description since FIFO is first toggled
@@ -46,6 +50,52 @@ function setupRunButton(algorithm) {
   return newRunBtn;
 }
 
+function setupResetButton() {
+  resetBtn.addEventListener("click", resetSimulation);
+  
+  // add tooltip
+  resetBtn.setAttribute('title', 'Reset the simulation');
+  
+  resetBtn.addEventListener('mouseenter', function() {
+    if (window.isSimulationRunning) {
+      this.setAttribute('title', 'Cannot reset while simulation is running');
+    }
+  });
+}
+
+function resetSimulation() {
+
+  console.log('Simulation Running:', window.isSimulationRunning);
+
+  // end if simulation is running
+  if (window.isSimulationRunning) {
+    return;
+  }
+
+  // reset memory frames
+  const pageFrameValues = document.querySelectorAll(".value");
+  pageFrameValues.forEach(frame => {
+    frame.textContent = "–";
+  });
+
+  // reset border color
+  const pageFrames = document.querySelectorAll(".page-frame");
+  pageFrames.forEach(frame => {
+    frame.style.borderColor = "#dfdddd";
+  });
+
+  // reset stats
+  const pageHitCtr = document.querySelector(".page-hit-ctr");
+  const pageFaultCtr = document.querySelector(".page-fault-ctr");
+  const hitRatioCtr = document.querySelector(".hit-ratio-ctr");
+
+  pageHitCtr.textContent = "0";
+  pageFaultCtr.textContent = "0";
+  hitRatioCtr.textContent = "0%";
+}
+
+
+resetBtn.addEventListener("click", resetSimulation);
 
 toggleButtons.forEach(button => {
   button.addEventListener('click', function() {
@@ -70,6 +120,8 @@ toggleButtons.forEach(button => {
 // default selected algorithm
 setupRunButton("fifo");
 
+// initial setup of reset button;
+setupResetButton();
 
 function updateSliderFill(slider) {
   const percentage = ((slider.value - slider.min) / (slider.max - slider.mid)) * 100;
@@ -216,7 +268,6 @@ class PageReplacementStrategy {
     }
 
     this.updateStatistics();
-
     this.resetFrameColors();
 
     for (let idx = 0; idx < pages.length; idx++) {
@@ -322,7 +373,15 @@ class LRUStrategy extends PageReplacementStrategy {
   }
 }
 
-function runPageReplacement(strategy, pageSequence) {
+async function runPageReplacement(strategy, pageSequence) {
+  // disable reset button during simulation
+  window.isSimulationRunning = true;
+  resetBtn.disabled = true;
+  resetBtn.classList.add('cursor-not-allowed', 'opacity-50');
+
+  console.log(window.isSimulationRunning);
+
+
   const pageFrames = Array.from(document.querySelectorAll(".page-frame"));
   const pageFrameValues = Array.from(document.querySelectorAll(".value"));
   const pages = pageSequence.split(",").map((val) => val.trim());
@@ -336,6 +395,12 @@ function runPageReplacement(strategy, pageSequence) {
     ? new FIFOStrategy(pageFrames, pageFrameValues, pageHitCtr, pageFaultCtr, hitRatioCtr)
     : new LRUStrategy(pageFrames, pageFrameValues, pageHitCtr, pageFaultCtr, hitRatioCtr);
 
-  
-  pageReplacement.simulatePageReplacement(pages);
+  try {
+    await pageReplacement.simulatePageReplacement(pages);
+  } finally {
+    // re-enable reset button after simulation
+    window.isSimulationRunning = false;
+    resetBtn.disabled = false;
+    resetBtn.classList.remove('cursor-not-allowed', 'opacity-50');
+  }
 }
