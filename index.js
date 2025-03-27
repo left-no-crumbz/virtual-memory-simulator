@@ -336,7 +336,7 @@ class LRUStrategy extends PageReplacementStrategy {
         this.memory.delete(page);
         this.memory.set(page, Date.now());
 
-        setTimeout(resolve, (1000/simSpeedRange.values));
+        setTimeout(resolve, (1000/simSpeedRange.value));
         return;
       }
 
