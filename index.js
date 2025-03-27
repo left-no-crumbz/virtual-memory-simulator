@@ -4,45 +4,50 @@ const simSpeedRange = document.getElementById("sim-speed-range");
 const simSpeedCtr = document.getElementById("sim-speed-ctr");
 const pageSeq = document.getElementById("page-seq");
 const runBtn = document.getElementById("run-btn");
-
+const toggleButtons = document.querySelectorAll('.toggle-btn');
+const description = document.getElementById('description');
 pageSeq.value = "1, 2, 3, 4, 5";
 
-// Change algorithm description on toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleButtons = document.querySelectorAll('.toggle-btn');
-    const description = document.getElementById('description');
 
-    // Default description since FIFO is first toggled
-    description.innerHTML = "<strong>First In First Out (FIFO):</strong> The oldest page in memory is replaced when a new page needs to be loaded. This algorithm is simple but may replace frequently used pages.";
 
+// Default description since FIFO is first toggled
+description.innerHTML = "<strong>First In First Out (FIFO):</strong> The oldest page in memory is replaced when a new page needs to be loaded. This algorithm is simple but may replace frequently used pages.";
+
+
+function setupRunButton(algorithm) {
+  // remove existing event listeners
+  const oldRunBtn = runBtn.cloneNode(true);
+  runBtn.parentNode.replaceChild(oldRunBtn, runBtn);
+
+  // add the new event listener
+  oldRunBtn.addEventListener("click", () => {
+    runPageReplacement(algorithm, pageSeq.value);
+  });
+
+  return oldRunBtn;
+}
+
+
+toggleButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    toggleButtons.forEach(btn => btn.classList.remove('active'));
+
+    this.classList.add('active');
     
-    toggleButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        toggleButtons.forEach(btn => btn.classList.remove('active'));
+    const algorithm = this.getAttribute('data-algorithm');
 
-        this.classList.add('active');
-        
-        const algorithm = this.getAttribute('data-algorithm');
-        if (algorithm === 'fifo') {
-          description.innerHTML = "<strong>First In First Out (FIFO):</strong> The oldest page in memory is replaced when a new page needs to be loaded. This algorithm is simple but may replace frequently used pages.";
+    if (algorithm === 'fifo') {
+      description.innerHTML = "<strong>First In First Out (FIFO):</strong> The oldest page in memory is replaced when a new page needs to be loaded. This algorithm is simple but may replace frequently used pages.";
+    } else if (algorithm === 'lru') {
+      description.innerHTML = "<strong>Least Recently Used (LRU):</strong> The page that hasn't been used for the longest time is replaced. This algorithm performs better than FIFO but requires tracking when each page was last accessed."
+    }
 
-          runBtn.addEventListener("click", (event) => {
-            runPageReplacement(algorithm, pageSeq.value);
-          });
-          
-        } else if (algorithm === 'lru') {
-          description.innerHTML = "<strong>Least Recently Used (LRU):</strong> The page that hasn't been used for the longest time is replaced. This algorithm performs better than FIFO but requires tracking when each page was last accessed."
-            runBtn.addEventListener("click", (event) => {
-              runPageReplacement(algorithm, pageSeq.value);
-            });          
-        }
-      });
-    });
+    setupRunButton(algorithm);
+  });
 });
 
-
-
-
+// initial setup of algorithm
+setupRunButton("fifo");
 
 function updateSliderFill(slider) {
   const percentage = ((slider.value - slider.min) / (slider.max - slider.mid)) * 100;
