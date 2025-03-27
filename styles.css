@@ -159,21 +159,26 @@ input[type="text"] + span {
 
 .run-container {
     margin-top: 1rem;
-    justify-content: flex-end;
+    justify-content: space-between;
 
     img {
         width: 20px;
         height: 20px;
     }
 
-    #run-btn {
+    #run-btn, #reset-btn {
         width: 105px;
-        padding: .8em 1.2em;
+        padding: .5em 1em;
         background-color: black;
         color: white;
         border-radius: 0.5rem;
-        justify-content: space-between;
+        justify-content: space-around;
         cursor: pointer;
+    }
+    
+    #reset-btn {
+        background-color: white;
+        color: black;
     }
 
     #run-btn:hover {
