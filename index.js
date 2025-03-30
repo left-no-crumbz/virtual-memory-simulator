@@ -374,6 +374,8 @@ class LRUStrategy extends PageReplacementStrategy {
 }
 
 async function runPageReplacement(strategy, pageSequence) {
+  setupResetButton();
+  resetSimulation();
   // disable reset button during simulation
   window.isSimulationRunning = true;
   resetBtn.disabled = true;

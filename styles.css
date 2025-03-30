@@ -242,3 +242,11 @@ span {
     font-size: 1.5rem;
     font-weight: 600;
 }
+
+.cursor-not-allowed {
+    cursor: not-allowed !important;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
